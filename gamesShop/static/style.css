@@ -2,6 +2,8 @@ li a {
     color: #f3ff94;
 }
 
+
+
 body {
     font-size: 20px;
     line-height: 25px;
@@ -9,6 +11,8 @@ body {
     background-color: #39477f;
     color: white;
 }
+
+
 
 #gamePanel {
     background-color: #232c4d;
@@ -19,6 +23,19 @@ body {
     margin-bottom: 5px;
     padding: 15px;
     text-align: justify;
+}
+#gamePanel div a { color: #f3ff94; text-decoration: none; }
+
+.gameInfoBlock {
+    background-color: #232c4d;
+    border-bottom: 1px solid #dbdbdb;
+    margin-left: 50px;
+    margin-right: 50px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    padding: 15px;
+    text-align: justify;
+    min-height: 300px;
 }
 
 #navigation {

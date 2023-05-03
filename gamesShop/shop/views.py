@@ -1,6 +1,16 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
+from django.views import generic
+
 from .models import GameDetail
+
+
+
+
+class GameDetailView(generic.DetailView):
+    model = GameDetail
+    template_name = "shop/gameDetail.html"
+    context_object_name = "gameDetail"
 
 
 def index(request):
