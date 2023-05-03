@@ -1,0 +1,36 @@
+li a {
+    color: #f3ff94;
+}
+
+body {
+    font-size: 20px;
+    line-height: 25px;
+    font-family: Arial;
+    background-color: #39477f;
+    color: white;
+}
+
+
+
+
+#navigation {
+    background-color: #232c4d;
+    height: 65px;
+    border-top: 1px solid #dbdbdb;
+    border-bottom: 1px solid #dbdbdb;
+}
+#navigation ul {
+    list-style: none;
+}
+#navigation ul li {
+    float: left;
+    height: 30px;
+    border-right: 2px solid #dbdbdb;
+    font-size: 20px;
+    line-height: 100%;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+#navigation ul li a { float: left; height: 43px; color: #000; padding: 0 33px; }
+
+#navigation ul li a.active { color: #f3ff94; text-decoration: none; }
