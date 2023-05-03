@@ -33,15 +33,22 @@
     </div>
 </div>
 
+views: {{ context.num_visits }}
 
+<div class="gamesList" >
+    {% for game in games_list %}
+    <div id="gamePanel" onClick="document.location='http://127.0.0.1:8000/admin'">
+        <div class="image left">
+            <a href="#"><img src="{{ game.cover.url }}" align="left" width="150px" alt="" /></a>
+        </div>
+        <div class="text left">
+            <h4>{{ game.label }}</h4>
+            <p>{{ game.description }}</p>
+        </div>
+    </div>
+    {% endfor %}
 
-    <p>Hello, stranger.<p></p>
-    total views: {{ context.num_visits }}
-
-    <p>
-
-
-    </p>
+				</div>
 </body>
 </html>
 

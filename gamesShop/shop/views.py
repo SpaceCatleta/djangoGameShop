@@ -1,5 +1,6 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
+from .models import GameDetail
 
 
 def index(request):
@@ -8,9 +9,11 @@ def index(request):
     request.session['num_visits'] = str(counter)
     request.session.modified = True
 
+    gamesList = GameDetail.objects.all()
+
     context =  {'num_visits': f'{counter}',
                 'admin': True}
-    return render(request, "shop/index.html", {'context': context})
+    return render(request, "shop/index.html", {'context': context, 'games_list': gamesList})
 
 
 def library(request):

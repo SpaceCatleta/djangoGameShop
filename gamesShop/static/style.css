@@ -10,8 +10,16 @@ body {
     color: white;
 }
 
-
-
+#gamePanel {
+    background-color: #232c4d;
+    border-bottom: 1px solid #dbdbdb;
+    margin-left: 50px;
+    margin-right: 50px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    padding: 15px;
+    text-align: justify;
+}
 
 #navigation {
     background-color: #232c4d;
