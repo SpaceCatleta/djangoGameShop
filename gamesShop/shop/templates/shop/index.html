@@ -39,13 +39,13 @@ views: {{ context.num_visits }}
     {% for game in games_list %}
     <div id="gamePanel">
         <div class="image left">
-            <a href="#"><img src="{{ game.cover.url }}" align="left" width="150px" alt="" /></a>
+            <a href="#"><img src="{{ game.cover.url }}" align="left" height="200px" alt="" /></a>
         </div>
         <div class="text left">
             <a href="{% url 'shop:detail' game.id %}">
                 <h4>{{ game.label }}</h4>
             </a>
-            <p>{{ game.description }}</p>
+            <p>{{ game.description }} ... </p>
         </div>
     </div>
     {% endfor %}

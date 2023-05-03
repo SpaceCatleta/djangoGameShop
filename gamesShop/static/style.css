@@ -23,6 +23,7 @@ body {
     margin-bottom: 5px;
     padding: 15px;
     text-align: justify;
+    min-height: 200px;
 }
 #gamePanel div a { color: #f3ff94; text-decoration: none; }
 

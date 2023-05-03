@@ -20,7 +20,9 @@ def index(request):
     request.session.modified = True
 
     gamesList = GameDetail.objects.all()
-
+    for game in gamesList:
+        if len(game.description) > 300:
+            game.description = game.description[:300]
     context =  {'num_visits': f'{counter}',
                 'admin': True}
     return render(request, "shop/index.html", {'context': context, 'games_list': gamesList})
