@@ -12,7 +12,6 @@ class GameDetail(models.Model):
 
     developer = models.CharField(max_length=100)
     publisher = models.CharField(max_length=100)
-    game_version = models.CharField(max_length=100)
     description = models.CharField(max_length=2000)
 
 

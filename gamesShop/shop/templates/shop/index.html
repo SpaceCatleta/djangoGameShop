@@ -35,6 +35,12 @@
 
 views: {{ context.num_visits }}
 
+{% if user.is_superuser %}
+<form action="{% url 'shop:add-new' %}" target="_blank">
+   <button>Переход по ссылке</button>
+</form>
+{% endif %}
+
 <div class="gamesList" >
     {% for game in games_list %}
     <div id="gamePanel">

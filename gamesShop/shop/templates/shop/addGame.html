@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <title>Add Game</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
+</head>
+<body>
+
+<div class="form-add-game" >
+		<h3>добавление игры</h3>
+		<div>
+          <form action="{% url 'shop:post-new' %}" enctype="multipart/form-data" method="post">
+            {% csrf_token %}
+            {{ form }}
+
+            <div class="input-field">
+              <label for="cover">Обложка</label>
+              <input id="cover" name="cover" type="file" multiple accept="image/*,image/jpeg">
+            </div>
+
+            <div class="input-field">
+              <label for="label">Название игры</label>
+              <input id="label" name="label" type="text">
+            </div>
+
+            <div class="input-field">
+                <label for="developer">Разработчик</label>
+                <input id="developer" name="developer" type="text">
+            </div>
+
+            <div class="input-field">
+              <label for="publisher">Издатель</label>
+              <input id="publisher" name="publisher" type="text">
+            </div>
+
+            <div class="input-field">
+              <label for="release_date">Дата выхода</label>
+              <input id="release_date" name="release_date" type="date">
+            </div>
+
+            <div class="input-field">
+              <label for="description">Описание</label>
+              <textarea id="description" name="description"></textarea>
+            </div>
+
+            <div>
+                <input type="submit">
+            </div>
+          </form>
+
+		</div>
+
+
+
+</div>
+
+</body>
+</html>

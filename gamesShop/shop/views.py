@@ -1,7 +1,8 @@
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import render
-from django.views import generic
+from django.shortcuts import render, redirect
+from django.views import generic, View
 
+from .form import AddGameForm
 from .models import GameDetail
 
 
@@ -28,7 +29,23 @@ def index(request):
     return render(request, "shop/index.html", {'context': context, 'games_list': gamesList})
 
 
+def addGame(request):
+    return render(request, "shop/addGame.html", {})
+
+
 def library(request):
     print('LIBRARY')
     context = {}
     return render(request, "shop/library.html", {'context': context})
+
+
+class AddGame(View):
+    def post(self, request):
+        form = AddGameForm(request.POST, request.FILES)
+        print(form)
+        if form.is_valid():
+            form.save()
+        else:
+            print("POST INVALID FORM")
+
+        return redirect('/shop')
