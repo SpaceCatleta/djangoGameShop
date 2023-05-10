@@ -4,11 +4,15 @@
 
 <div class="main_div">
 
-There is chart
-
 <div class="gamesList" >
+    <div class="chartPanel">
+        Общая сумма: {{ context.total_price }}
+    </div>
+    <div class="chartPanel">
+        Список товаров:
+    </div>
     {% for game in games_list %}
-    <div id="gamePanel">
+    <div class="gamePanel">
         <div class="image left">
             <a href="#"><img src="{{ game.cover.url }}" align="left" height="200px" alt="" /></a>
         </div>
@@ -16,7 +20,10 @@ There is chart
             <a href="{% url 'shop:detail' game.id %}">
                 <h4>{{ game.label }}</h4>
             </a>
-            <p>{{ game.description }} ... </p>
+            <p>{{ game.price }} руб. </p>
+            <form action="{% url 'shop:delete-from-chart' game.id %}" method="post">{% csrf_token %}
+                <button class="button1">Удалить из корзины</button>
+            </form>
         </div>
     </div>
     {% endfor %}

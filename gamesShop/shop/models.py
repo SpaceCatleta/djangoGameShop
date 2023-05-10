@@ -10,7 +10,7 @@ class GameDetail(models.Model):
     label = models.CharField(max_length=100)
     cover = models.ImageField('Обложка игры', upload_to='game_covers')
     release_date = models.DateField('дата выхода')
-    #price=models.DecimalField(verbose_name='Баланс',  max_digits=10, decimal_places=2)
+    price = models.DecimalField(verbose_name='Цена',  max_digits=10, decimal_places=2, default=0)
 
     developer = models.CharField(max_length=100)
     publisher = models.CharField(max_length=100)

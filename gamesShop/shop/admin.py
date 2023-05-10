@@ -4,7 +4,7 @@ from .models import GameDetail, UserProfile, UsersGames, UserChart
 
 class GameDetailAdmin(admin.ModelAdmin):
     fieldsets = [
-        ('Main info', {'fields': ['label', 'cover', 'release_date']}),
+        ('Main info', {'fields': ['label', 'cover', 'release_date', 'price']}),
         ('More information', {'fields': ['developer', 'publisher', 'description']}),
     ]
 admin.site.register(GameDetail, GameDetailAdmin)

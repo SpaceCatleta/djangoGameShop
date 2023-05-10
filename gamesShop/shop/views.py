@@ -39,8 +39,6 @@ def index(request):
 def addGame(request):
     return render(request, "shop/addGame.html", {})
 
-def addToChart(request):
-    return render(request, "shop/chart.html", {})
 
 class AddGameToChart(View):
     def post(self, request, pk):
@@ -48,6 +46,10 @@ class AddGameToChart(View):
         chartGame.save()
         return redirect(f'/shop/{pk}/')
 
+def deleteFromChart(request, pk):
+    chartGame = UserChart.objects.get(user=request.user.id, game=pk)
+    chartGame.delete()
+    return redirect(f'/shop/chart/')
 
 
 def library(request):
@@ -64,11 +66,12 @@ def library(request):
 def chart(request):
     current_user = request.user
     gamesList = [userGame.game for userGame in UserChart.objects.filter(user=current_user.id)]
-
+    totalPrice = 0
     for game in gamesList:
+        totalPrice += game.price
         if len(game.description) > 300:
             game.description = game.description[:300]
-    context = {}
+    context = { 'total_price': totalPrice}
     return render(request, "shop/chart.html", {'context': context, 'games_list': gamesList})
 
 

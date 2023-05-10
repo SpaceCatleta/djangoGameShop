@@ -12,9 +12,18 @@ body {
     color: white;
 }
 
+.chartPanel {
+    background-color: #232c4d;
+    border-bottom: 1px solid #dbdbdb;
+    margin-left: 50px;
+    margin-right: 50px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    padding: 15px;
+    text-align: justify;
+}
 
-
-#gamePanel {
+.gamePanel {
     background-color: #232c4d;
     border-bottom: 1px solid #dbdbdb;
     margin-left: 50px;
@@ -25,7 +34,7 @@ body {
     text-align: justify;
     min-height: 200px;
 }
-#gamePanel div a { color: #f3ff94; text-decoration: none; }
+.gamePanel div a { color: #f3ff94; text-decoration: none; }
 
 .gameInfoBlock {
     background-color: #232c4d;

@@ -15,6 +15,7 @@
                 <h4>{{ gameDetail.label }}</h4>
                 <p>дота выпуска: {{ gameDetail.release_date }} </p>
                 <p>разработчик/издатель: {{ gameDetail.developer }}/{{ gameDetail.publisher }} </p>
+                <p>цена: {{ gameDetail.price }}р. </p>
             </div>
             <!-- кнопка покупки -->
             <form action="{% url 'shop:add-to-chart' gameDetail.id %}" method="post">{% csrf_token %}

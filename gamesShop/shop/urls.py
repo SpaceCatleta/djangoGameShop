@@ -11,4 +11,5 @@ urlpatterns = [
     path("post-new/", views.AddGame.as_view(), name="post-new"),
     path("<int:pk>/", views.GameDetailView.as_view(), name="detail"),
     path("add-to-chart/<int:pk>/", views.AddGameToChart.as_view(), name="add-to-chart"),
+    path("delete-from-chart/<int:pk>/", views.deleteFromChart, name="delete-from-chart"),
 ]

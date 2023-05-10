@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/html">
 <head>
     {% load static %}
     <meta charset="UTF-8">
@@ -35,6 +35,11 @@
               <input id="publisher" name="publisher" type="text">
             </div>
 
+              <div class="input-field">
+              <label for="price">Цена</label>
+              <input id="price" name="price" type="number">
+            </div>
+
             <div class="input-field">
               <label for="release_date">Дата выхода</label>
               <input id="release_date" name="release_date" type="date">
@@ -46,7 +51,7 @@
             </div>
 
             <div>
-                <input type="submit">
+                <input class="button1" type="submit" value="Добавить">
             </div>
           </form>
 
