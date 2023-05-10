@@ -52,7 +52,6 @@ class AddGameToChart(View):
 
 def library(request):
     current_user = request.user
-
     gamesList = [userGame.game for userGame in UsersGames.objects.filter(user=current_user.id)]
 
     for game in gamesList:
@@ -60,6 +59,17 @@ def library(request):
             game.description = game.description[:300]
     context = {}
     return render(request, "shop/library.html", {'context': context, 'games_list': gamesList})
+
+
+def chart(request):
+    current_user = request.user
+    gamesList = [userGame.game for userGame in UserChart.objects.filter(user=current_user.id)]
+
+    for game in gamesList:
+        if len(game.description) > 300:
+            game.description = game.description[:300]
+    context = {}
+    return render(request, "shop/chart.html", {'context': context, 'games_list': gamesList})
 
 
 class AddGame(View):

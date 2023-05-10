@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <title>{% block title %}Default title{% endblock title %}</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
+</head>
+
+<body>
+    <div id="navigation">
+        <ul>
+            <li><a href="{% url 'shop:index' %}" class="active">Каталог</a></li>
+            <li><a href="{% url 'shop:library' %}" class="active">Библиотека</a></li>
+            {% if user.is_authenticated %}
+            <li><a href="{% url 'shop:index' %}" class="active">{{ user.get_username }}</a></li>
+            <li><a href="/" class="active">Выйти</a></li>
+            {% else %}
+            <li><a href="/" class="active">Войти</a></li>
+            {% endif %}
+            <li><a href="{% url 'shop:chart' %}" class="active">Корзина</a></li>
+        </ul>
+    </div>
+
+<div>{% block content %}{% endblock content %}</div>
+
+</body>
+</html>

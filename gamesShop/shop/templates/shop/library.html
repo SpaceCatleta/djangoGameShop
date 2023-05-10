@@ -1,26 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Library</title>
-    {% load static %}
-    <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
-</head>
-<body>
-  <div class="main_div">
-    <div id="navigation">
-        <ul>
-            <li><a href="{% url 'shop:index' %}" class="active">catalog</a></li>
-            <li><a href="{% url 'shop:library' %}" class="active">library</a></li>
-            {% if user.is_authenticated %}
-            <li><a href="{% url 'shop:index' %}" class="active">{{ user.get_username }}</a></li>
-            <li><a href="/" class="active">Logout</a></li>
-            {% else %}
-            <li><a href="/" class="active">Login</a></li>
-            {% endif %}
-        </ul>
-    </div>
-</div>
+{% extends "shop/components/navigationBar.html" %}
+{% block title %}Библиотека{% endblock title %}
+{% block content %}
+
+<div class="main_div">
+
 There is library
 
 <div class="gamesList" >
@@ -39,5 +22,5 @@ There is library
     {% endfor %}
 </div>
 
-</body>
-</html>
+</div>
+{% endblock content %}
