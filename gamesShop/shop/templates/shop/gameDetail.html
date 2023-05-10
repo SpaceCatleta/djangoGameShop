@@ -7,7 +7,6 @@
     <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
 </head>
 <body>
-
 <div class="main_div">
     <div id="navigation">
         <ul>
@@ -31,21 +30,21 @@
 
             <div class="text left">
                 <h4>{{ gameDetail.label }}</h4>
-                <p>released: {{ gameDetail.release_date }} </p>
-                <p>developer/publisher: {{ gameDetail.developer }}/{{ gameDetail.publisher }} </p>
+                <p>дота выпуска: {{ gameDetail.release_date }} </p>
+                <p>разработчик/издатель: {{ gameDetail.developer }}/{{ gameDetail.publisher }} </p>
             </div>
+            <!-- кнопка покупки -->
             <form action="{% url 'shop:add-to-chart' gameDetail.id %}" method="post">{% csrf_token %}
                 <div class="chart buttons">
                     {% if is_in_library %}
-                        <button disabled class="button1">In library</button>
+                        <button disabled class="button1">В библиотеке</button>
                     {% elif is_in_chart %}
-                        <button disabled class="button1">In chart</button>
+                        <button disabled class="button1">в корзине</button>
                     {% else %}
-                        <button class="button1">Add to chart</button>
+                        <button class="button1">Добавить в корзину</button>
                     {% endif %}
                 </div>
             </form>
-
         </div>
 
         <div class="gameInfoBlock">

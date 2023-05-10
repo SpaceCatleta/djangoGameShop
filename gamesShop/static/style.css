@@ -80,3 +80,21 @@ textarea {
   box-shadow: 4px 4px 10px rgba(0,0,0,0.06);
   height: 150px;
 }
+
+.button1 {
+  background-color: #4379e5;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  padding: 10px 22px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+.button1:disabled{background-color: #4a2e99}
+.button1:hover:disabled{background-color: #4a2e99}
+
+.button1:hover {background-color: #3e8e41}
