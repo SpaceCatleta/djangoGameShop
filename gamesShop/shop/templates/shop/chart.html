@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Chart</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
+</head>
+<body>
+  <div class="main_div">
+    <div id="navigation">
+        <ul>
+            <li><a href="{% url 'shop:index' %}" class="active">catalog</a></li>
+            <li><a href="{% url 'shop:library' %}" class="active">library</a></li>
+            {% if user.is_authenticated %}
+            <li><a href="{% url 'shop:index' %}" class="active">{{ user.get_username }}</a></li>
+            <li><a href="/" class="active">Logout</a></li>
+            {% else %}
+            <li><a href="/" class="active">Login</a></li>
+            {% endif %}
+        </ul>
+    </div>
+</div>
+There is chart
+
+<div class="gamesList" >
+    {% for game in games_list %}
+    <div id="gamePanel">
+        <div class="image left">
+            <a href="#"><img src="{{ game.cover.url }}" align="left" height="200px" alt="" /></a>
+        </div>
+        <div class="text left">
+            <a href="{% url 'shop:detail' game.id %}">
+                <h4>{{ game.label }}</h4>
+            </a>
+            <p>{{ game.description }} ... </p>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+</body>
+</html>

@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import GameDetail, UserProfile, UsersGames
+from .models import GameDetail, UserProfile, UsersGames, UserChart
 
 
 class GameDetailAdmin(admin.ModelAdmin):
@@ -17,4 +17,9 @@ class UserProfileAdmin(admin.ModelAdmin):
 
 @admin.register(UsersGames)
 class UserProfileAdmin(admin.ModelAdmin):
+    list_display = ('user', 'game')
+
+
+@admin.register(UserChart)
+class UserChartAdmin(admin.ModelAdmin):
     list_display = ('user', 'game')

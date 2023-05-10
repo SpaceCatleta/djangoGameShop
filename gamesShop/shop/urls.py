@@ -9,4 +9,5 @@ urlpatterns = [
     path("add-new/", views.addGame, name="add-new"),
     path("post-new/", views.AddGame.as_view(), name="post-new"),
     path("<int:pk>/", views.GameDetailView.as_view(), name="detail"),
+    path("add-to-chart/<int:pk>/", views.AddGameToChart.as_view(), name="add-to-chart"),
 ]

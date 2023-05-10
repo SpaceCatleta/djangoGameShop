@@ -3,7 +3,7 @@ from django.shortcuts import render, redirect
 from django.views import generic, View
 
 from .form import AddGameForm
-from .models import GameDetail, UsersGames
+from .models import GameDetail, UsersGames, UserChart
 
 
 
@@ -13,9 +13,16 @@ class GameDetailView(generic.DetailView):
     template_name = "shop/gameDetail.html"
     context_object_name = "gameDetail"
 
+    def get_context_data(self, **kwargs):
+        context = super(GameDetailView, self).get_context_data(**kwargs)
+        context['is_in_library'] = UsersGames.objects. \
+            filter(user=self.request.user.id, game=int(self.get_object().id)).exists()
+        context['is_in_chart'] = UserChart.objects.\
+            filter(user=self.request.user.id,game=int(self.get_object().id)).exists()
+        return context
+
 
 def index(request):
-    print('CATALOG')
     counter = int(request.session.get('num_visits', 0)) + 1
     request.session['num_visits'] = str(counter)
     request.session.modified = True
@@ -31,6 +38,16 @@ def index(request):
 
 def addGame(request):
     return render(request, "shop/addGame.html", {})
+
+def addToChart(request):
+    return render(request, "shop/chart.html", {})
+
+class AddGameToChart(View):
+    def post(self, request, pk):
+        chartGame = UserChart(user=request.user, game=GameDetail.objects.get(pk=pk))
+        chartGame.save()
+        return redirect(f'/shop/{pk}/')
+
 
 
 def library(request):

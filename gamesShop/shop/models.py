@@ -47,3 +47,15 @@ class UsersGames(models.Model):
     class Meta:
         verbose_name = 'Игра пользователя'
         verbose_name_plural = 'Игры пользователей'
+
+
+class UserChart(models.Model):
+    user = models.ForeignKey(User, verbose_name='Пользователь', on_delete=models.CASCADE)
+    game = models.ForeignKey(GameDetail, verbose_name='Игра', on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f'{self.user}, {self.game}'
+
+    class Meta:
+        verbose_name = 'Игра в корзине пользователя'
+        verbose_name_plural = 'Игры в корзине пользователей'
