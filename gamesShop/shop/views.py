@@ -3,7 +3,7 @@ from django.shortcuts import render, redirect
 from django.views import generic, View
 
 from .form import AddGameForm
-from .models import GameDetail, UsersGames, UserChart
+from .models import GameDetail, UsersGames, UserChart, UserProfile
 
 
 
@@ -65,13 +65,16 @@ def library(request):
 
 def chart(request):
     current_user = request.user
+    userProfile = UserProfile.objects.get(user=current_user.id)
     gamesList = [userGame.game for userGame in UserChart.objects.filter(user=current_user.id)]
     totalPrice = 0
     for game in gamesList:
         totalPrice += game.price
         if len(game.description) > 300:
             game.description = game.description[:300]
-    context = { 'total_price': totalPrice}
+    context = { 'total_price': totalPrice , 'balance': userProfile.balance,
+                'total': userProfile.balance - totalPrice,
+                'is_enough_money': totalPrice <= userProfile.balance}
     return render(request, "shop/chart.html", {'context': context, 'games_list': gamesList})
 
 
@@ -83,3 +86,33 @@ class AddGame(View):
             return redirect('/shop')
         else:
             print("POST INVALID FORM")
+
+class GamesLibrary(View):
+    def post(self, request):
+        current_user = request.user
+        userProfile = UserProfile.objects.get(user=current_user.id)
+        userGamesInChart = UserChart.objects.filter(user=current_user.id)
+        userGames = [value.game for value in userGamesInChart]
+
+        totalPrice = 0
+        for game in userGames:
+            totalPrice += game.price
+            UsersGames(user=current_user, game=game).save()
+
+        for game in userGamesInChart:
+            game.delete()
+
+        userProfile.balance -= totalPrice
+        userProfile.save()
+        return redirect(f'/shop/chart/')
+
+class UserView(View):
+
+    def get(self, request):
+        current_user = request.user
+        userProfile = UserProfile.objects.get(user=current_user.id)
+        context = {
+            'username': current_user.username,
+            'balance': userProfile.balance
+        }
+        return render(request, "shop/profile.html", {'context': context})

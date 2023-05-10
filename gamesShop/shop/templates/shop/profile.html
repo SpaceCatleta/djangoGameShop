@@ -1,0 +1,12 @@
+{% extends "shop/components/navigationBar.html" %}
+{% block title %}Профиль{% endblock title %}
+{% block content %}
+
+<div class="main_div">
+    <div class="gamePanel">
+        <p>Профиль пользователя:</p>
+        <p>Имя пользователя: {{ context.username }}</p>
+        <p>Баланс: {{ context.balance }}</p>
+    </div>
+</div>
+{% endblock content %}

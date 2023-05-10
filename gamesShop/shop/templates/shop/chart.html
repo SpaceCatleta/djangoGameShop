@@ -6,7 +6,18 @@
 
 <div class="gamesList" >
     <div class="chartPanel">
-        Общая сумма: {{ context.total_price }}
+        <p>Общая сумма: {{ context.total_price }}</p>
+        {% if games_list %}
+            <p>Баланс кошелька: {{ context.balance }}</p>
+            {% if context.is_enough_money %}
+                <p>Итог: {{ context.total }}</p>
+                <form action="{% url 'shop:purchase' %}" method="post">{% csrf_token %}
+                    <button class="button1">Купить</button>
+                </form>
+            {% else %}
+                <p>Недостаточно средств</p>
+            {% endif %}
+        {% endif %}
     </div>
     <div class="chartPanel">
         Список товаров:

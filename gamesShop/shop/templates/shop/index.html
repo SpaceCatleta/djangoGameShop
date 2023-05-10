@@ -4,8 +4,6 @@
 
 <div class="main_div">
 
-views: {{ context.num_visits }}
-
 {% if user.is_superuser %}
 <form action="{% url 'shop:add-new' %}" target="_blank">
    <button class="button1">Добавить игру</button>
@@ -28,5 +26,6 @@ views: {{ context.num_visits }}
     {% endfor %}
 </div>
 
+views: {{ context.num_visits }}
 </div>
 {% endblock content %}
