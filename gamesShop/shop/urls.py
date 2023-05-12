@@ -13,7 +13,7 @@ urlpatterns = [
     path("post-new/", views.AddGame.as_view(), name="post-new"),
     path("update-game-page/<int:pk>", views.AddGame.updateGamePage, name="update-game-page"),
     path("update-game/<int:pk>", views.AddGame.updateGame, name="update-game"),
-
+    path("delete-game/<int:pk>", views.softDeleteGame, name="delete-game"),
 
     path("purchase/", views.GamesLibrary.as_view(), name="purchase"),
     path("<int:pk>/", views.GameDetailView.as_view(), name="detail"),

@@ -6,7 +6,8 @@ class GameDetailAdmin(admin.ModelAdmin):
     fieldsets = [
         ('Main info', {'fields': ['label', 'cover', 'release_date', 'price']}),
         ('More information', {'fields': ['developer', 'publisher', 'description']}),
-    ]
+        ('DB data', {'fields': ['is_deleted']}),
+        ]
 admin.site.register(GameDetail, GameDetailAdmin)
 
 

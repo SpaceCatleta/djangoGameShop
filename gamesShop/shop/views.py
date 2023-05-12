@@ -27,7 +27,7 @@ def index(request):
     request.session['num_visits'] = str(counter)
     request.session.modified = True
 
-    gamesList = GameDetail.objects.all()
+    gamesList = GameDetail.objects.filter(is_deleted=False)
     for game in gamesList:
         if len(game.description) > 300:
             game.description = game.description[:300]
@@ -54,12 +54,15 @@ def deleteFromChart(request, pk):
 def library(request):
     current_user = request.user
     gamesList = [userGame.game for userGame in UsersGames.objects.filter(user=current_user.id)]
-
+    clearGamesList = []
     for game in gamesList:
         if len(game.description) > 300:
             game.description = game.description[:300]
+            if not game.is_deleted:
+                clearGamesList.append(game)
+
     context = {}
-    return render(request, "shop/library.html", {'context': context, 'games_list': gamesList})
+    return render(request, "shop/library.html", {'context': context, 'games_list': clearGamesList})
 
 
 def chart(request):
@@ -110,6 +113,13 @@ class AddGame(View):
             return redirect(f'/shop/{pk}')
         else:
             print("POST INVALID FORM")
+
+
+def softDeleteGame(request, pk):
+    gameDetail  = get_object_or_404(GameDetail, id=pk)
+    gameDetail.is_deleted = True
+    gameDetail.save()
+    return redirect('/shop')
 
 
 class GamesLibrary(View):
