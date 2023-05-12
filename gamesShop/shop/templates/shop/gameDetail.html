@@ -29,6 +29,11 @@
                     {% endif %}
                 </div>
             </form>
+            <form action="{% url 'shop:update-game-page' gameDetail.id %}">
+                <div class="chart buttons">
+                    <button class="button1">Редактировать</button>
+                </div>
+            </form>
         </div>
 
         <div class="gameInfoBlock">

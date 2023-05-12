@@ -1,11 +1,11 @@
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.views import generic, View
 
 from .form import AddGameForm
 from .models import GameDetail, UsersGames, UserChart, UserProfile
 
-
+from django.contrib.auth import logout
 
 
 class GameDetailView(generic.DetailView):
@@ -36,8 +36,7 @@ def index(request):
     return render(request, "shop/index.html", {'context': context, 'games_list': gamesList})
 
 
-def addGame(request):
-    return render(request, "shop/addGame.html", {})
+
 
 
 class AddGameToChart(View):
@@ -78,7 +77,14 @@ def chart(request):
     return render(request, "shop/chart.html", {'context': context, 'games_list': gamesList})
 
 
+
+# addGame.html
 class AddGame(View):
+
+    @staticmethod
+    def addGamePage(request):
+        return render(request, "shop/addGame.html", {})
+
     def post(self, request):
         form = AddGameForm(request.POST, request.FILES)
         if form.is_valid():
@@ -86,6 +92,25 @@ class AddGame(View):
             return redirect('/shop')
         else:
             print("POST INVALID FORM")
+
+    @staticmethod
+    def updateGamePage(request, pk):
+        gameDetail  = get_object_or_404(GameDetail, id=pk)
+        gameDetail.release_date = str(gameDetail.release_date)
+        print(gameDetail.release_date)
+        print("==========================================")
+        return render(request, "shop/addGame.html", {'gameDetail': gameDetail, 'is_update_form': True})
+
+    @staticmethod
+    def updateGame(request, pk):
+        instance = GameDetail.objects.get(pk=pk)
+        form = AddGameForm(request.POST, instance=instance)
+        if form.is_valid():
+            form.save()
+            return redirect(f'/shop/{pk}')
+        else:
+            print("POST INVALID FORM")
+
 
 class GamesLibrary(View):
     def post(self, request):
@@ -116,3 +141,8 @@ class UserView(View):
             'balance': userProfile.balance
         }
         return render(request, "shop/profile.html", {'context': context})
+
+
+def logout_view(request):
+    logout(request=request)
+    return redirect('/')

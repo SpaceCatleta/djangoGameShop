@@ -15,7 +15,7 @@
             <li><a href="{% url 'shop:library' %}" class="active">Библиотека</a></li>
             {% if user.is_authenticated %}
             <li><a href="{% url 'shop:profile' %}" class="active">{{ user.get_username }}</a></li>
-            <li><a href="/" class="active">Выйти</a></li>
+            <li><a href="{% url 'shop:logout' %}" class="active">Выйти</a></li>
             {% else %}
             <li><a href="/" class="active">Войти</a></li>
             {% endif %}

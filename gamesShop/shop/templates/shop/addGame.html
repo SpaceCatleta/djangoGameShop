@@ -9,56 +9,62 @@
 <body>
 
 <div class="form-add-game" >
-		<h3>добавление игры</h3>
-		<div>
-          <form action="{% url 'shop:post-new' %}" enctype="multipart/form-data" method="post">
-            {% csrf_token %}
-            {{ form }}
+    {% if is_update_form %}
+    <h3>Добавление игры</h3>
+    {% else %}
+    <h3>Редактирование игры</h3>
+    {% endif %}
+	<div>
+        {% if is_update_form %}
+        <form action="{% url 'shop:update-game' gameDetail.id %}" enctype="multipart/form-data" method="post">
+        {% else %}
+        <form action="{% url 'shop:post-new' %}" enctype="multipart/form-data" method="post">
+        {% endif %}
 
-            <div class="input-field">
-              <label for="cover">Обложка</label>
-              <input id="cover" name="cover" type="file" multiple accept="image/*,image/jpeg">
-            </div>
+        {% csrf_token %}
+        {{ form }}
 
-            <div class="input-field">
-              <label for="label">Название игры</label>
-              <input id="label" name="label" type="text">
-            </div>
+        <div class="input-field">
+            <label for="cover">Обложка</label>
+            <input id="cover" name="cover" type="file" multiple accept="image/*,image/jpeg">
+        </div>
 
-            <div class="input-field">
-                <label for="developer">Разработчик</label>
-                <input id="developer" name="developer" type="text">
-            </div>
+        <div class="input-field">
+            <label for="label">Название игры</label>
+            <input id="label" name="label" type="text" value="{{ gameDetail.label }}">
+        </div>
 
-            <div class="input-field">
-              <label for="publisher">Издатель</label>
-              <input id="publisher" name="publisher" type="text">
-            </div>
+        <div class="input-field">
+            <label for="developer">Разработчик</label>
+            <input id="developer" name="developer" type="text" value="{{ gameDetail.developer }}">
+        </div>
 
-              <div class="input-field">
-              <label for="price">Цена</label>
-              <input id="price" name="price" type="number">
-            </div>
+        <div class="input-field">
+            <label for="publisher">Издатель</label>
+            <input id="publisher" name="publisher" type="text" value="{{ gameDetail.publisher }}">
+        </div>
 
-            <div class="input-field">
-              <label for="release_date">Дата выхода</label>
-              <input id="release_date" name="release_date" type="date">
-            </div>
+        <div class="input-field">
+            <label for="price">Цена</label>
+            <input id="price" name="price" type="number" value="{{ gameDetail.price }}">
+        </div>
 
-            <div class="input-field">
-              <label for="description">Описание</label>
-              <textarea id="description" name="description"></textarea>
-            </div>
+        <div class="input-field">
+            <label for="release_date">Дата выхода</label>
+            <input id="release_date" name="release_date" type="date" value="{{ gameDetail.release_date }}">
+        </div>
 
-            <div>
-                <input class="button1" type="submit" value="Добавить">
-            </div>
-          </form>
+        <div class="input-field">
+            <label for="description">Описание</label>
+            <textarea id="description" name="description">{{ gameDetail.description }}</textarea>
+        </div>
 
-		</div>
+        <div>
+            <input class="button1" type="submit" value="Сохранить">
+        </div>
+        </form>
 
-
-
+    </div>
 </div>
 
 </body>

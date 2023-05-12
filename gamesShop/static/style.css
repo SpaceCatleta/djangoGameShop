@@ -23,6 +23,13 @@ body {
     text-align: justify;
 }
 
+.textBox1 {
+    margin-left: 40px;
+}
+.block-content {
+    margin: 10px;
+}
+
 .gamePanel {
     background-color: #232c4d;
     border-bottom: 1px solid #dbdbdb;

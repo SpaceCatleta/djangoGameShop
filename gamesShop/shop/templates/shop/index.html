@@ -13,10 +13,10 @@
 <div class="gamesList" >
     {% for game in games_list %}
     <div class="gamePanel">
-        <div class="image left">
+        <div class="image left block-content">
             <a href="#"><img src="{{ game.cover.url }}" align="left" height="200px" alt="" /></a>
         </div>
-        <div class="text left">
+        <div class="text left block-content">
             <a href="{% url 'shop:detail' game.id %}">
                 <h4>{{ game.label }}</h4>
             </a>
