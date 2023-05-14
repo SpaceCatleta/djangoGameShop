@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <title>Logged out</title>
+</head>
+
+<style>
+body {
+    font-size: 20px;
+    line-height: 25px;
+    font-family: Arial;
+    background-color: #39477f;
+    color: white;
+}
+.button1 {
+  background-color: #4379e5;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  padding: 10px 22px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+</style>
+
+<body>
+<p>Logged out!</p>
+
+<a class="button1" href="{% url 'login'%}">Click here to login again.</a>
+</body>
+</html>
