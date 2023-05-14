@@ -50,6 +50,12 @@ def deleteFromChart(request, pk):
     chartGame.delete()
     return redirect(f'/shop/chart/')
 
+def loginRedirect(request):
+    return redirect('/accounts/login')
+
+def logoutRedirect(request):
+    return redirect('/accounts/logout')
+
 
 def library(request):
     current_user = request.user

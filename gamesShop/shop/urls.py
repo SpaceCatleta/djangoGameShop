@@ -20,5 +20,6 @@ urlpatterns = [
     path("add-to-chart/<int:pk>/", views.AddGameToChart.as_view(), name="add-to-chart"),
     path("delete-from-chart/<int:pk>/", views.deleteFromChart, name="delete-from-chart"),
 
-path("logout/", views.logout, name="logout"),
+    path("logout/", views.logoutRedirect, name="logout"),
+    path("login/", views.loginRedirect, name="login"),
 ]
