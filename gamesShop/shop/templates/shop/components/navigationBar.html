@@ -18,6 +18,7 @@
             <li><a href="{% url 'shop:logout' %}" class="active">Выйти</a></li>
             {% else %}
             <li><a href="{% url 'shop:login' %}" class="active">Войти</a></li>
+            <li><a href="{% url 'shop:register' %}" class="active">Регистрация</a></li>
             {% endif %}
             <li><a href="{% url 'shop:chart' %}" class="active">Корзина</a></li>
         </ul>

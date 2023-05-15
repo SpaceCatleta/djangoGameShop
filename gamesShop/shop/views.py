@@ -1,3 +1,4 @@
+from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views import generic, View
@@ -5,7 +6,7 @@ from django.views import generic, View
 from .form import AddGameForm, RegisterForm
 from .models import GameDetail, UsersGames, UserChart, UserProfile
 
-from django.contrib.auth import logout
+from django.contrib.auth import logout, login
 
 
 class GameDetailView(generic.DetailView):
@@ -57,9 +58,22 @@ def logoutRedirect(request):
     return redirect('/accounts/logout')
 
 def signUp(request):
+    print('SIGNUP')
     if request.method == 'GET':
+        print('SIGNUP.GET')
         form = RegisterForm()
         return render(request, 'shop/register.html', { 'form': form})
+    if request.method == 'POST':
+        form = RegisterForm(request.POST)
+        if form.is_valid():
+            user = form.save(commit=False)
+            user.username = user.username.lower()
+            user.save()
+            messages.success(request, 'You have singed up successfully.')
+            login(request, user)
+            return redirect('/accounts/login')
+        else:
+            return render(request, 'users/register.html', {'form': form})
 
 def library(request):
     current_user = request.user
