@@ -2,7 +2,7 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views import generic, View
 
-from .form import AddGameForm
+from .form import AddGameForm, RegisterForm
 from .models import GameDetail, UsersGames, UserChart, UserProfile
 
 from django.contrib.auth import logout
@@ -56,6 +56,10 @@ def loginRedirect(request):
 def logoutRedirect(request):
     return redirect('/accounts/logout')
 
+def signUp(request):
+    if request.method == 'GET':
+        form = RegisterForm()
+        return render(request, 'shop/register.html', { 'form': form})
 
 def library(request):
     current_user = request.user
